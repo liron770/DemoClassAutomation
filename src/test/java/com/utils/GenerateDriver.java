@@ -3,6 +3,7 @@ package com.utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +14,9 @@ public class GenerateDriver {
         WebDriver driver = switch (browserType.toLowerCase()) {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
-                yield new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+//                chromeOptions.addArguments("--headless");
+                yield new ChromeDriver(chromeOptions);
             }
             case "firefox" -> {
                 WebDriverManager.firefoxdriver().setup();
@@ -29,7 +32,7 @@ public class GenerateDriver {
         };
 
         driver.manage().window().maximize();
-//        driver.manage().deleteAllCookies();
+        driver.manage().deleteAllCookies();
         driver.get(url);
 
         return driver;
