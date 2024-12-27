@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class GenerateDriver {
@@ -20,13 +21,15 @@ public class GenerateDriver {
             }
             case "edge" -> {
                 WebDriverManager.edgedriver().setup();
-                yield new EdgeDriver();
-            }
+                EdgeOptions options = new EdgeOptions();
+                options.addArguments("--no-first-run", "--disable-sync");
+                System.setProperty("webdriver.edge.driver", "C:\\bin\\msedgedriver.exe");
+                yield new EdgeDriver(options);}
             default -> throw new IllegalArgumentException("Browser \"" + browserType + "\" not supported.");
         };
 
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
+//        driver.manage().deleteAllCookies();
         driver.get(url);
 
         return driver;

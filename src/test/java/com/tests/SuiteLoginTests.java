@@ -13,7 +13,7 @@ public class SuiteLoginTests {
 
     @BeforeSuite
     public void setUp()  {
-        driver = GenerateDriver.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
+        driver = GenerateDriver.initDriver("firefox", "https://practicetestautomation.com/practice-test-login/");
         actions = new Action(driver);
     }
 
