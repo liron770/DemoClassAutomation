@@ -17,10 +17,13 @@ public class SuiteLoginTests {
         actions = new Action(driver);
     }
 
+
     @Test
     public void testLogin() {
         assert actions.performLoginSuccessfully();
     }
+
+
 
     @AfterSuite
     public void tearDown() {
