@@ -17,9 +17,33 @@ public class LoginPage extends BasePage{
         return validateLogin();
     }
 
+    public boolean loginErrorHandelingForIncorrectUser(String username, String password) throws InterruptedException {
+        typeUsername(username);
+        typePassword(password);
+        clickLoginButton();
+        return InvalidUserLogin();
+    }
+
+    public boolean loginErrorHandelingForIncorrectPassword(String username, String password) throws InterruptedException {
+        typeUsername(username);
+        typePassword(password);
+        clickLoginButton();
+        return InvalidPasswordLogin();
+    }
+
+
     public boolean validateLogin(){
         return isElementDisplayed(By.xpath("//h1[text()=\"Logged In Successfully\"]"));
     }
+
+    public boolean InvalidUserLogin(){
+        return isElementDisplayed(By.xpath("//div[text()='Your username is invalid!']"));
+    }
+
+    public boolean InvalidPasswordLogin(){
+        return isElementDisplayed(By.xpath("//div[text()='Your password is invalid!']"));
+    }
+
 
     public void typeUsername(String username){
         typeText(By.id("username"), username);

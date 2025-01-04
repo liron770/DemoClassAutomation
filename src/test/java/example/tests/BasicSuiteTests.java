@@ -19,11 +19,21 @@ public class BasicSuiteTests {
         actions = new Actions(driver);
     }
 
-    @Test(description="Validating login with correct credentials")
+    @Test(description="Validating login with correct credentials", groups = {"smoke"})
     public void validateLogin() throws InterruptedException {
         Assert.assertTrue(actions.doValidLogin(), "failed to login");
     }
 
+
+    @Test(description="Validating login error message when incorrect user", groups = {"sanity"})
+    public void InValidUserNameLogin() throws InterruptedException {
+        Assert.assertTrue(actions.doLoginErrorHandlingForIncorrectUser(), "failed to validate error message in login");
+    }
+
+    @Test(description="Validating login with incorrect credentials", groups = {"sanity"})
+    public void InValidPasswordLogin() throws InterruptedException {
+        Assert.assertTrue(actions.doLoginErrorHandlingForIncorrectPassword(), "failed to validate error message in login");
+    }
 
     @AfterSuite
     public void tearDown() {
