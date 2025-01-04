@@ -17,11 +17,11 @@ public class Actions {
 
 
     public boolean doLoginErrorHandlingForIncorrectUser() throws InterruptedException {
-        return loginPage.loginErrorHandelingForIncorrectUser("student1", "Password123");
+        return loginPage.loginErrorHandlingForIncorrectUser("student1", "Password123");
     }
 
     public boolean doLoginErrorHandlingForIncorrectPassword() throws InterruptedException {
-        return loginPage.loginErrorHandelingForIncorrectPassword("student", "Password1234");
+        return loginPage.loginErrorHandlingForIncorrectPassword("student", "Password1234");
     }
 
 }

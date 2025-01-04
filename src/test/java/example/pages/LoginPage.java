@@ -14,17 +14,18 @@ public class LoginPage extends BasePage{
         typeUsername(username);
         typePassword(password);
         clickLoginButton();
+        Thread.sleep(2000);
         return validateLogin();
     }
 
-    public boolean loginErrorHandelingForIncorrectUser(String username, String password) throws InterruptedException {
+    public boolean loginErrorHandlingForIncorrectUser(String username, String password) throws InterruptedException {
         typeUsername(username);
         typePassword(password);
         clickLoginButton();
         return InvalidUserLogin();
     }
 
-    public boolean loginErrorHandelingForIncorrectPassword(String username, String password) throws InterruptedException {
+    public boolean loginErrorHandlingForIncorrectPassword(String username, String password) throws InterruptedException {
         typeUsername(username);
         typePassword(password);
         clickLoginButton();

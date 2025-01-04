@@ -13,7 +13,7 @@ public class BasicSuiteTests {
     WebDriver driver;
     Actions actions;
 
-    @BeforeSuite
+    @BeforeSuite(groups = {"sanity", "smoke"})
     public void setUp() {
         driver = GenerateDriverNew.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
         actions = new Actions(driver);
@@ -35,7 +35,7 @@ public class BasicSuiteTests {
         Assert.assertTrue(actions.doLoginErrorHandlingForIncorrectPassword(), "failed to validate error message in login");
     }
 
-    @AfterSuite
+    @AfterSuite(groups = {"sanity", "smoke"})
     public void tearDown() {
         driver.quit();
     }
