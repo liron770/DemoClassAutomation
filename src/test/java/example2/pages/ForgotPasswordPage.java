@@ -27,7 +27,7 @@ public class ForgotPasswordPage extends BasePage {
     }
 
     public boolean validateForgotPassword(){
-        return validateElementExists(By.id("confirmation-alert1")) > 0;
+        return validateElementExists(By.id("confirmation-alert")) > 0;
     }
 
 }
