@@ -1,4 +1,4 @@
-package com.utils;
+package all.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +8,17 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class GenerateDriver {
-
+public class GenerateDriverAll {
     public static WebDriver initDriver(String browserType, String url) {
+
         WebDriver driver = switch (browserType.toLowerCase()) {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 //                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--no-first-run", "--disable-sync");
+                chromeOptions.addArguments("--incognito", "--disable-sync");
+
                 yield new ChromeDriver(chromeOptions);
             }
             case "firefox" -> {
@@ -38,9 +41,7 @@ public class GenerateDriver {
         return driver;
     }
 
-
     public static void cleanDriver(WebDriver driver){
         driver.quit();
     }
-
 }

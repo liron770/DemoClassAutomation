@@ -1,4 +1,4 @@
-package example.utils;
+package example1.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +8,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class GenerateDriverNew {
-    public static WebDriver initDriver(String browserType, String url) {
+public class GenerateDriver {
 
+    public static WebDriver initDriver(String browserType, String url) {
         WebDriver driver = switch (browserType.toLowerCase()) {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
@@ -36,6 +36,11 @@ public class GenerateDriverNew {
         driver.get(url);
 
         return driver;
+    }
+
+
+    public static void cleanDriver(WebDriver driver){
+        driver.quit();
     }
 
 }

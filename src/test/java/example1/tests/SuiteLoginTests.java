@@ -1,7 +1,8 @@
-package com.tests;
+package example1.tests;
 
-import com.actions.Action;
-import com.utils.GenerateDriver;
+import all.utils.GenerateDriverAll;
+import example1.actions.Action;
+import example1.utils.GenerateDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -13,7 +14,7 @@ public class SuiteLoginTests {
 
     @BeforeSuite
     public void setUp()  {
-        driver = GenerateDriver.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
+        driver = GenerateDriverAll.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
         actions = new Action(driver);
     }
 

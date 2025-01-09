@@ -1,4 +1,4 @@
-package com.pages;
+package example1.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

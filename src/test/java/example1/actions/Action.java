@@ -1,6 +1,6 @@
-package com.actions;
+package example1.actions;
 
-import com.pages.Login;
+import example1.pages.Login;
 import org.openqa.selenium.WebDriver;
 
 public class Action {
