@@ -26,12 +26,11 @@ public class GeneralTests {
     }
 
     /**
-     * Test to compare the Chrome CPU value.
-     * Asserts that the comparison is successful.
+     * Tests the forgot password functionality.
      */
-    @Test(description = "Compare Chrome CPU value")
-    public void compareChromeCPU() {
-        assert actions.compareChromeCpuValue();
+    @Test(description = "testing the forgot password positive functionality")
+    public void forgotPassword() {
+        assert actions.doForgotPassword();
     }
 
     /**

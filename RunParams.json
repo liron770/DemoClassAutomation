@@ -1,4 +1,5 @@
 {
-  "url": "https://practice.expandtesting.com/dynamic-table",
-  "browser": "chrome"
+  "url": "https://practice.expandtesting.com/forgot-password",
+  "browser": "chrome",
+  "url2": "https://practice.expandtesting.com/dynamic-table2"
 }
