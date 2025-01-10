@@ -20,8 +20,9 @@ public class RegistrationFormPage extends BasePage {
         typeText(By.cssSelector("input[name='contactnumber']"), contactNumber);
     }
 
-    public void selectPaymentMethod(String contactNumber){
-
+    public void selectPaymentMethod(String paymentMethod){
+        click(By.cssSelector("select[name='payment']"));
+        click(By.cssSelector("option[value='" + paymentMethod + "']"));
     }
 
     public void fillDate(String date){
@@ -32,8 +33,8 @@ public class RegistrationFormPage extends BasePage {
         click(By.cssSelector("button[type='submit']"));
     }
 
-    public boolean validateForgotPassword(){
-        return validateElementExists(By.id("confirmation-alert")) > 0;
+    public boolean validateFormSuccessSubmitted(){
+        return validateElementExist(By.xpath("//p[text()='Thank you for validating your ticket']"));
     }
 
 }

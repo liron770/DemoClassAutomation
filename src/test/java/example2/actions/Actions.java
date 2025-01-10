@@ -41,8 +41,10 @@ public class Actions {
      */
     public boolean doRegistrationForm(String name, String date) {
         registrationForm.fillContactName(name);
+        registrationForm.fillContactNumber("012-3456789");
         registrationForm.fillDate(date);
-        registrationForm.clickSubmit();
-        return true;
+        registrationForm.selectPaymentMethod("cashondelivery");
+        registrationForm.clickRegister();
+        return registrationForm.validateFormSuccessSubmitted();
     }
 }

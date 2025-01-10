@@ -58,15 +58,15 @@ public class BasePage {
      * Validates if elements exist for the given locator.
      *
      * @param locator the By locator of the elements
-     * @return the number of elements found
+     * @return the boolean of elements found
      */
-    public int validateElementExists(By locator) {
+    public boolean validateElementExist(By locator) {
         // Wait for the page to load completely
         wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 
         // Find all elements matching the locator
         List<WebElement> elements = driver.findElements(locator);
-        return elements.size();
+        return !elements.isEmpty();
     }
 
     /**
