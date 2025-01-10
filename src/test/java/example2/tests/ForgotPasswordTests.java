@@ -8,7 +8,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class GeneralTests {
+public class ForgotPasswordTests {
 
     WebDriver driver;
     Actions actions;
@@ -17,7 +17,7 @@ public class GeneralTests {
      * Sets up the test environment by initializing the WebDriver and Actions.
      * Reads the URL and browser type from the JSON configuration file.
      */
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setUp() {
         String URL = JsonUtils.readJsonFromFile("url");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
@@ -28,7 +28,7 @@ public class GeneralTests {
     /**
      * Tests the forgot password functionality.
      */
-    @Test(description = "testing the forgot password positive functionality")
+    @Test(description = "testing the forgot password positive functionality", groups = {"smoke", "regression", "forgotPassword"})
     public void forgotPassword() {
         assert actions.doForgotPassword();
     }
@@ -36,7 +36,7 @@ public class GeneralTests {
     /**
      * Cleans up the test environment by quitting the WebDriver.
      */
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         GenerateDriverAll.cleanDriver(driver);
     }
