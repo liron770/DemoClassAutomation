@@ -17,26 +17,26 @@ public class RegistrationFormTest {
      * Sets up the test environment by initializing the WebDriver and Actions.
      * Reads the URL and browser type from the JSON configuration file.
      */
-    @BeforeSuite
+    @BeforeSuite(description = "setting up the test environment", alwaysRun = true)
     public void setUp() {
-        String URL = JsonUtils.readJsonFromFile("url");
+        String URL_FORM_VALIDATION = JsonUtils.readJsonFromFile("url_form_validation");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
-        driver = GenerateDriverAll.initDriver(BROWSER, URL);
+        driver = GenerateDriverAll.initDriver(BROWSER, URL_FORM_VALIDATION);
         actions = new Actions(driver);
     }
 
     /**
      * Tests the forgot password functionality.
      */
-    @Test(description = "testing the registration form positive")
-    public void forgotPassword() {
-        assert actions.doForgotPassword();
+    @Test(description = "testing the registration form positive", groups = {"smoke", "regression", "registration"})
+    public void registrationFormPositiveTest() {
+        assert actions.doRegistrationForm("John Doe", "21/12/2024");
     }
 
     /**
      * Cleans up the test environment by quitting the WebDriver.
      */
-    @AfterSuite
+    @AfterSuite(description = "cleaning up the test environment", alwaysRun = true)
     public void tearDown() {
         GenerateDriverAll.cleanDriver(driver);
     }

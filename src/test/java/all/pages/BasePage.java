@@ -50,6 +50,7 @@ public class BasePage {
     public void typeText(By locator, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
+        element.clear();
         element.sendKeys(text);
     }
 

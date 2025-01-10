@@ -12,11 +12,6 @@ public class ForgotPasswordPage extends BasePage {
         super(driver, 10);
     }
 
-    public boolean validateForgotPasswordFunctionality(){
-        typeEmail("test@test.com");
-        clickSubmit();
-        return(validateForgotPassword());
-    }
 
     public void typeEmail(String email){
         typeText(By.id("email"), email);
