@@ -39,3 +39,4 @@ build/
 
 # Ignore misc.xml file
 misc.xml
+/logs/app.log
