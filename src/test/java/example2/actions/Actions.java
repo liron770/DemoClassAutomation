@@ -1,5 +1,6 @@
 package example2.actions;
 
+import example2.pages.AutomationExercisePage;
 import example2.pages.ForgotPasswordPage;
 import example2.pages.RegistrationFormPage;
 import example2.pages.TableTaskPage;
@@ -11,6 +12,7 @@ public class Actions {
     ForgotPasswordPage forgotPassword;
 
     RegistrationFormPage registrationForm;
+    AutomationExercisePage automationExercisePage;
 
     /**
      * Constructor to initialize the Actions class with a WebDriver instance.
@@ -20,6 +22,7 @@ public class Actions {
     public Actions(WebDriver driver) {
         forgotPassword = new ForgotPasswordPage(driver);
         registrationForm = new RegistrationFormPage(driver);
+        automationExercisePage = new AutomationExercisePage(driver);
     }
 
     /**
@@ -46,5 +49,10 @@ public class Actions {
         registrationForm.selectPaymentMethod("cashondelivery");
         registrationForm.clickRegister();
         return registrationForm.validateFormSuccessSubmitted();
+    }
+
+    public boolean doSubscription(String email) {
+
+        return automationExercisePage.fillSubscription(email);
     }
 }

@@ -1,5 +1,7 @@
 package all.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class BasePage {
 
+    private static final Logger logger = LogManager.getLogger(BasePage.class);
     WebDriver driver;
     WebDriverWait wait;
     Actions actions;
@@ -36,6 +39,7 @@ public class BasePage {
      * @param locator the By locator of the element to be clicked
      */
     public void click(By locator) {
+        logger.info("Going to click WebElement: {}", locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
         element.click();
@@ -48,6 +52,7 @@ public class BasePage {
      * @param text    the text to be typed
      */
     public void typeText(By locator, String text) {
+        logger.info("Going to send keys to WebElement: {} {}", locator, text);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
         element.clear();
@@ -100,6 +105,15 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
         actions.doubleClick(element).perform();
+    }
+
+
+    public void scrollToElement(By locator) {
+        // Find the element using the provided locator
+        WebElement element = driver.findElement(locator);
+
+        // Scroll the element into view using JavaScript
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
 }
