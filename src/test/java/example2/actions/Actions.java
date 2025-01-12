@@ -36,6 +36,12 @@ public class Actions {
         return forgotPassword.validateForgotPassword();
     }
 
+    public boolean doForgotPasswordFromExcel(String email) {
+        forgotPassword.typeEmail(email);
+        forgotPassword.clickSubmit();
+        return forgotPassword.validateForgotPassword();
+    }
+
     /**
      * Performs the registration form action by filling the contact name, date, and clicking submit.
      *

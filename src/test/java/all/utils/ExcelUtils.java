@@ -14,38 +14,46 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ExcelUtils {
+    public static List<List<String>> readExcelFile(String filePath) {
+        List<List<String>> data = new ArrayList<>();
 
-    public static List<Object[]> getExcelData(String filePath, String sheetName) {
-        List<Object[]> data = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis)) {
-            Sheet sheet = workbook.getSheet(sheetName);
-            Iterator<Row> rowIterator = sheet.iterator();
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-                Iterator<Cell> cellIterator = row.cellIterator();
-                List<Object> rowData = new ArrayList<>();
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
+
+            Sheet sheet = workbook.getSheetAt(0);
+            boolean isFirstRow = true;
+
+            for (Row row : sheet) {
+                // Skip the first row (header row)
+                if (isFirstRow) {
+                    isFirstRow = false;
+                    continue;
+                }
+
+                List<String> rowData = new ArrayList<>();
+                for (Cell cell : row) {
                     switch (cell.getCellType()) {
                         case STRING:
                             rowData.add(cell.getStringCellValue());
                             break;
                         case NUMERIC:
-                            rowData.add(cell.getNumericCellValue());
+                            rowData.add(String.valueOf(cell.getNumericCellValue()));
                             break;
                         case BOOLEAN:
-                            rowData.add(cell.getBooleanCellValue());
+                            rowData.add(String.valueOf(cell.getBooleanCellValue()));
                             break;
                         default:
-                            rowData.add(null);
+                            rowData.add("");
                     }
                 }
-                data.add(rowData.toArray());
+                data.add(rowData);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return data;
     }
+
+
 }
