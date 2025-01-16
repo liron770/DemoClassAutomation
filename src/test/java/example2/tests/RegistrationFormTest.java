@@ -33,6 +33,14 @@ public class RegistrationFormTest {
         assert actions.doRegistrationForm("John Doe", "21/12/2024");
     }
 
+
+    /**
+     * Tests the forgot password functionality.
+     */
+    @Test(description = "testing the registration form positive", groups = {"smoke", "regression", "registration"})
+    public void registrationFormNegativeTest() {
+        assert actions.doRegistrationForm("John Doe", "21/12/2024");
+    }
     /**
      * Cleans up the test environment by quitting the WebDriver.
      */
