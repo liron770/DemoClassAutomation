@@ -57,8 +57,12 @@ public class Actions {
         return registrationForm.validateFormSuccessSubmitted();
     }
 
+    /**
+     * doSubscription form action by filling the contact name, date, and clicking submit.
+     *
+     * @param email the contact email to be filled
+     */
     public boolean doSubscription(String email) {
-
         return automationExercisePage.fillSubscription(email);
     }
 }
