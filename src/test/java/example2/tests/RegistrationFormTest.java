@@ -5,6 +5,7 @@ import all.utils.JsonUtils;
 import example2.actions.Actions;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -13,18 +14,26 @@ public class RegistrationFormTest {
     WebDriver driver;
     Actions actions;
 
+    String URL_FORM_VALIDATION;
+
     /**
      * Sets up the test environment by initializing the WebDriver and Actions.
      * Reads the URL and browser type from the JSON configuration file.
      */
     @BeforeSuite(description = "setting up the test environment", alwaysRun = true)
     public void setUp() {
-        String URL_FORM_VALIDATION = JsonUtils.readJsonFromFile("url_form_validation");
+        URL_FORM_VALIDATION = JsonUtils.readJsonFromFile("url_form_validation");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
         driver = GenerateDriverAll.initDriver(BROWSER, URL_FORM_VALIDATION);
         actions = new Actions(driver);
     }
 
+
+    @BeforeMethod(description = "executing before each test method")
+    public void beforeMethod() {
+        driver.navigate().to(URL_FORM_VALIDATION);
+        driver.navigate().refresh();
+    }
     /**
      * Tests the forgot password functionality.
      */
