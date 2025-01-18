@@ -1,18 +1,16 @@
 package example2.actions;
 
-import example2.pages.AutomationExercisePage;
-import example2.pages.ForgotPasswordPage;
-import example2.pages.RegistrationFormPage;
-import example2.pages.TableTaskPage;
+import example2.pages.*;
 import org.openqa.selenium.WebDriver;
 
 public class Actions {
 
-    TableTaskPage tableTaskPage;
     ForgotPasswordPage forgotPassword;
 
     RegistrationFormPage registrationForm;
     AutomationExercisePage automationExercisePage;
+    HomePage homePage;
+    SignUpSignInPage signUpSignInPage;
 
     /**
      * Constructor to initialize the Actions class with a WebDriver instance.
@@ -23,6 +21,8 @@ public class Actions {
         forgotPassword = new ForgotPasswordPage(driver);
         registrationForm = new RegistrationFormPage(driver);
         automationExercisePage = new AutomationExercisePage(driver);
+        homePage = new HomePage(driver);
+        signUpSignInPage = new SignUpSignInPage(driver);
     }
 
     /**
@@ -65,4 +65,25 @@ public class Actions {
     public boolean doSubscription(String email) {
         return automationExercisePage.fillSubscription(email);
     }
+
+    public boolean verifyHomePage() {
+        return homePage.verifyHomePage();
+    }
+
+    public boolean accessVerifySignInSignUpPage() {
+        homePage.accessSignUp();
+        return homePage.verifyAccessSignInSignUpPage();
+
+    }
+
+    public boolean verifyStartingSignUp() {
+        signUpSignInPage.typeSignUpName("Test User111");
+        signUpSignInPage.typeSignUpEmail("test_user111dsdsd@test.com");
+        signUpSignInPage.clickSignUp();
+        return signUpSignInPage.verifyStartingSignUp();
+    }
+
+
+
+
 }

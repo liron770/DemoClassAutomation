@@ -39,7 +39,7 @@ public class ForgotPasswordExcelTests {
     /**
      * Tests the forgot password functionality.
      */
-    @Test(dataProvider = "excelData", dataProviderClass = TestDataProvider.class, description = "testing the forgot password positive functionality, using excel data", groups = {"smoke", "regression", "forgotPassword"})
+    @Test(dataProvider = "excelData", dataProviderClass = TestDataProvider.class, description = "testing the forgot password positive functionality, using excel data", groups = {"smoke",  "forgotPassword"})
     public void forgotPassword(String email) {
         assert actions.doForgotPasswordFromExcel(email);
     }

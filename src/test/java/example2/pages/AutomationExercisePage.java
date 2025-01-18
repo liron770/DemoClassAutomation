@@ -14,6 +14,6 @@ public class AutomationExercisePage extends BasePage {
     public boolean fillSubscription(String email){
         scrollToElement(By.cssSelector("#susbscribe_email"));
         typeText(By.cssSelector("#susbscribe_email"), email);
-        return true;
+        return (validateElementExist(By.xpath("//*[text()='You have been successfully subscribed!']")));
     }
 }
