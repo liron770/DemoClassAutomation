@@ -23,8 +23,16 @@ public class SignUpSignInPage extends BasePage {
         click(By.xpath("//button[@data-qa=\"signup-button\"]"));
     }
 
-    public boolean verifyStartingSignUp(){
-        return validateElementExist(By.xpath("//h2/b[text()='Enter Account Information']"));
+    public boolean verifyStartingSignUp(String name, String email){
+        boolean result = getElementAttributeUsingJS(By.xpath("//input[@name=\"name\"]"),"value").equals(name);
+        if(result){
+            result = getElementAttributeUsingJS(By.xpath("//input[@name=\"email\"]"),"value").equals(email);
+        }else {
+            return false;
+        }
+        if(result)
+            return validateElementExist(By.xpath("//h2/b[text()='Enter Account Information']"));
+        return false;
     }
 }
 

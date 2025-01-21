@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -39,7 +40,7 @@ public class BasePage {
      * @param locator the By locator of the element to be clicked
      */
     public void click(By locator) {
-        logger.info("Going to click WebElement: {}", locator);
+        logger.debug("Going to click WebElement: {}", locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
         element.click();
@@ -52,7 +53,7 @@ public class BasePage {
      * @param text    the text to be typed
      */
     public void typeText(By locator, String text) {
-        logger.info("Going to send keys to WebElement: {} {}", locator, text);
+        logger.debug("Going to send keys to WebElement: {} {}", locator, text);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = driver.findElement(locator);
         element.clear();
@@ -63,7 +64,7 @@ public class BasePage {
      * Validates if elements exist for the given locator.
      *
      * @param locator the By locator of the elements
-     * @return the boolean of elements found
+     * @return the according elements size
      */
     public boolean validateElementExist(By locator) {
         // Wait for the page to load completely
@@ -71,6 +72,11 @@ public class BasePage {
 
         // Find all elements matching the locator
         List<WebElement> elements = driver.findElements(locator);
+        if (elements.isEmpty()) {
+            logger.error("No elements found for locator: {}", locator);
+        } else {
+            logger.debug("Elements found for locator: {}", locator);
+        }
         return !elements.isEmpty();
     }
 
@@ -96,6 +102,13 @@ public class BasePage {
         return driver.findElement(locator).getText();
     }
 
+    public String getElementAttributeUsingJS(By locator, String attribute) {
+        WebElement element = driver.findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].getAttribute(arguments[1]);", element, attribute);
+    }
+
+
     /**
      * Double-clicks on the element located by the given locator.
      *
@@ -115,5 +128,19 @@ public class BasePage {
         // Scroll the element into view using JavaScript
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+
+    /**
+     * Selects the given value in the select element located by the given locator.
+     *
+     * @param locator the By locator of the select element
+     * @param value the value to be selected
+     */
+    public void selectValueInDropdown(By locator, String value) {
+        WebElement selectElement = driver.findElement(locator);
+        Select select = new Select(selectElement);
+        select.selectByValue(value);
+    }
+
 
 }

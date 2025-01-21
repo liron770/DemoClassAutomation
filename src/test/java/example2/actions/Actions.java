@@ -1,5 +1,6 @@
 package example2.actions;
 
+import all.utils.RandomUtils;
 import example2.pages.*;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +13,8 @@ public class Actions {
     HomePage homePage;
     SignUpSignInPage signUpSignInPage;
 
+    SignUpFormPage signUpFormPage;
+
     /**
      * Constructor to initialize the Actions class with a WebDriver instance.
      *
@@ -23,6 +26,7 @@ public class Actions {
         automationExercisePage = new AutomationExercisePage(driver);
         homePage = new HomePage(driver);
         signUpSignInPage = new SignUpSignInPage(driver);
+        signUpFormPage = new SignUpFormPage(driver);
     }
 
     /**
@@ -77,11 +81,43 @@ public class Actions {
     }
 
     public boolean verifyStartingSignUp() {
-        signUpSignInPage.typeSignUpName("Test User111");
-        signUpSignInPage.typeSignUpEmail("test_user111dsdsd@test.com");
+        int randomInt = RandomUtils.getRandomInt(4);
+        String name = "Auto Test User " + randomInt;
+        String email = "test_user" + randomInt + "@autotest.com";
+        signUpSignInPage.typeSignUpName(name);
+        signUpSignInPage.typeSignUpEmail(email);
         signUpSignInPage.clickSignUp();
-        return signUpSignInPage.verifyStartingSignUp();
+        return signUpSignInPage.verifyStartingSignUp(name, email);
     }
+
+    public boolean verifyFillingSignUp() {
+
+        signUpFormPage.selectTitle("woman");
+        boolean results = signUpFormPage.verifyDisabledEmailInput();
+        if (!results) {
+            results = signUpFormPage.verifySignUpFormPage();
+        }
+        signUpFormPage.typePassword("12345678");
+        signUpFormPage.selectAyear("1990");
+        signUpFormPage.signUpForNewsletters();
+        signUpFormPage.signUpForOffers();
+        signUpFormPage.typeFirstName("QA_firstName");
+        signUpFormPage.typeLastName("QA_lastName");
+        signUpFormPage.typeCompany("QA_company");
+        signUpFormPage.typeAddress_1("QA_address_1");
+        signUpFormPage.typeAddress_2("QA_address_2");
+        signUpFormPage.selectCountry("United States");
+        signUpFormPage.typeState("California");
+        signUpFormPage.typeCity("Los Angeles");
+        signUpFormPage.typeZipCode("90001");
+        signUpFormPage.typeMobileNumber("1234567890");
+        signUpFormPage.clickCreateAccount();
+        if (!results) {
+            results = signUpFormPage.verifySignUpSuccess();
+        }
+        return results;
+    }
+
 
 
 
