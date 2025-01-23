@@ -1,19 +1,19 @@
 package example2.tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import all.utils.GenerateDriverAll;
 import all.utils.JsonUtils;
 import example2.actions.Actions;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class LoginUserWithValidCredentials {
+public class SubscriptionTests {
 
-    private static final Logger logger = LogManager.getLogger(LoginUserWithValidCredentials.class);
+    private static final Logger logger = LogManager.getLogger(SubscriptionTests.class);
     WebDriver driver;
     Actions actions;
 
@@ -25,23 +25,23 @@ public class LoginUserWithValidCredentials {
     public void setUp() {
         String URL_FOR_SUBSCRIPTION = JsonUtils.readJsonFromFile("url_for_subscription");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
-        logger.debug("WebDriver setup complete: {}, {}", BROWSER, URL_FOR_SUBSCRIPTION);
+        logger.info("WebDriver setup complete: {}, {}", BROWSER, URL_FOR_SUBSCRIPTION);
         driver = GenerateDriverAll.initDriver(BROWSER, URL_FOR_SUBSCRIPTION);
         actions = new Actions(driver);
     }
 
     /**
-     * Testing the login positive scenario.
+     * Testing the registration form positive scenario.
      */
-    @Test(description = "testing the login positive", groups = {"smoke", "regression", "login"})
-    public void loginPositiveTest() {
-        boolean result = actions.loginValidCredentials();
+    @Test(description = "testing the registration form positive", groups = {"smoke", "regression", "registration"})
+    public void registrationFormPositiveTest() {
+        boolean result = actions.doSubscription("test@test.com");
         if (result) {
-            logger.info("Login form positive test passed.");
+            logger.info("Registration form positive test passed.");
         } else {
-            logger.error("Login form positive test failed.");
+            logger.error("Registration form positive test failed.");
         }
-        Assert.assertTrue(result, "Login form positive test failed.");
+        Assert.assertTrue(result, "The registration form positive test did not pass.");
     }
 
     /**
@@ -50,6 +50,6 @@ public class LoginUserWithValidCredentials {
     @AfterSuite(description = "cleaning up the test environment", alwaysRun = true)
     public void tearDown() {
         GenerateDriverAll.cleanDriver(driver);
-        logger.debug("Registration form positive test ended.");
+        logger.info("Registration form positive test ended.");
     }
 }

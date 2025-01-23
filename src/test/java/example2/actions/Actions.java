@@ -93,7 +93,7 @@ public class Actions {
     }
 
     public boolean verifyStartingSignUp() {
-        int randomInt = RandomUtils.getRandomInt(4);
+        int randomInt = RandomUtils.getRandomInt(6);
         String name = "Auto Test User " + randomInt;
         String email = "test_user" + randomInt + "@autotest.com";
         signUpSignInPage.typeSignUpName(name);
