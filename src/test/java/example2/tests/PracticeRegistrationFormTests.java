@@ -8,8 +8,11 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 
-public class RegistrationFormTest {
+
+public class PracticeRegistrationFormTests {
 
     WebDriver driver;
     Actions actions;
@@ -37,6 +40,9 @@ public class RegistrationFormTest {
     /**
      * Tests the forgot password functionality.
      */
+
+    @Description("This is a sample test: testing the registration form positive")
+    @Step("testing the registration form positive")
     @Test(description = "testing the registration form positive", groups = {"smoke", "regression", "registration"})
     public void registrationFormPositiveTest() {
         assert actions.doRegistrationForm("John Doe", "21/12/2024");
@@ -46,6 +52,8 @@ public class RegistrationFormTest {
     /**
      * Tests the forgot password functionality.
      */
+    @Description("This is a 2nd sample test: testing again the registration form positive")
+    @Step("testing the registration form positive")
     @Test(description = "testing the registration form positive", groups = {"smoke", "regression", "registration"})
     public void registrationFormNegativeTest() {
         assert actions.doRegistrationForm("John Doe", "21/12/2024");

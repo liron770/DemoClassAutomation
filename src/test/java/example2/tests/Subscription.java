@@ -11,9 +11,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class SubscriptionTest {
+public class Subscription {
 
-    private static final Logger logger = LogManager.getLogger(SubscriptionTest.class);
+    private static final Logger logger = LogManager.getLogger(Subscription.class);
     WebDriver driver;
     Actions actions;
 

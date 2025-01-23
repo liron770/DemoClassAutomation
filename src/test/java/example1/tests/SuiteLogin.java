@@ -6,7 +6,7 @@ import example1.utils.GenerateDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
-public class SuiteLoginTests {
+public class SuiteLogin {
 
     WebDriver driver;
     Action actions;

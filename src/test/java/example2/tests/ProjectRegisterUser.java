@@ -11,9 +11,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class RegisterUserTestCase {
+public class ProjectRegisterUser {
 
-    private static final Logger logger = LogManager.getLogger(RegisterUserTestCase.class);
+    private static final Logger logger = LogManager.getLogger(ProjectRegisterUser.class);
     WebDriver driver;
     Actions actions;
 

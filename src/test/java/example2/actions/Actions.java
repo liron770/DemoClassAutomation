@@ -29,6 +29,18 @@ public class Actions {
         signUpFormPage = new SignUpFormPage(driver);
     }
 
+
+    public boolean loginValidCredentials() {
+        boolean results = homePage.verifyHomePage();
+//        if (results) {
+//            homePage.accessSignUp();
+//            results = homePage.verifyAccessSignInSignUpPage();
+//            if (results) {
+//                results = signUpSignInPage.typeSignInEmail("
+//        return automationExercisePage.fillLogin();
+        return results;
+    }
+
     /**
      * Performs the forgot password action by typing the email, clicking submit, and validating the result.
      *

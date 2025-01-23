@@ -142,5 +142,13 @@ public class BasePage {
         select.selectByValue(value);
     }
 
-
+    public boolean isTextDisplayedInAnyElement(By locator, String text) {
+        List<WebElement> elements = driver.findElements(locator);
+        for (WebElement element : elements) {
+            if (element.getText().contains(text)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
