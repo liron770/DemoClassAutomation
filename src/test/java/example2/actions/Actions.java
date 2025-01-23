@@ -1,5 +1,6 @@
 package example2.actions;
 
+import all.utils.JsonUtils;
 import all.utils.RandomUtils;
 import example2.pages.*;
 import org.openqa.selenium.WebDriver;
@@ -31,13 +32,21 @@ public class Actions {
 
 
     public boolean loginValidCredentials() {
+        String email = JsonUtils.readJsonFromFile("valid_email");
+        String password = JsonUtils.readJsonFromFile("valid_password");
+        String name = JsonUtils.readJsonFromFile("valid_name");
         boolean results = homePage.verifyHomePage();
-//        if (results) {
-//            homePage.accessSignUp();
-//            results = homePage.verifyAccessSignInSignUpPage();
-//            if (results) {
-//                results = signUpSignInPage.typeSignInEmail("
-//        return automationExercisePage.fillLogin();
+        if (results) {
+            homePage.accessSignUp();
+            results = homePage.verifyAccessSignInSignUpPage();
+            if (results) {
+                signUpSignInPage.typeSignInEmail(email);
+                signUpSignInPage.typeSignInPassword(password);
+                signUpSignInPage.clickSignIn();
+                results = signUpSignInPage.validateSucceedLogin(name);
+                return results;
+            }
+        }
         return results;
     }
 
